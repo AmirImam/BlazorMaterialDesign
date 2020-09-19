@@ -1,0 +1,69 @@
+﻿@inject SharedService Service;
+<MatNavMenu Style="@($"background-color:{Service.Theme.Theme.OnSecondary};color:{Service.Theme.Theme.OnSurface}")">
+    <MatNavItem OnClick="ClickMe" Title="Item 1">Item 1 - OnClick</MatNavItem>
+    <MatNavItem Disabled="true" Title="Item 2">Item 2</MatNavItem>
+    <MatNavSubMenu @bind-Expanded="@navSubMenuOpenState">
+        <MatNavSubMenuHeader>
+            <MatNavItem AllowSelection="false"><MatIcon Icon="all_inbox"></MatIcon>&nbsp; Theme</MatNavItem>
+        </MatNavSubMenuHeader>
+        <MatNavSubMenuList>
+            <MatNavItem OnClick="@(()=> { ChangeTheme("light"); })">Light&nbsp; <MatIcon Icon="build"></MatIcon></MatNavItem>
+            <MatNavItem OnClick="@(()=> { ChangeTheme("dark"); })">Dark&nbsp; <MatIcon Icon="explore"></MatIcon></MatNavItem>
+        </MatNavSubMenuList>
+    </MatNavSubMenu>
+    <MatNavItem><MatIcon Icon="grade"></MatIcon>&nbsp; Item 4 </MatNavItem>
+    <MatDivider></MatDivider>
+    <MatNavItem><MatIcon Icon="face"></MatIcon>&nbsp; Item 5</MatNavItem>
+    <MatNavSubMenu>
+        <MatNavSubMenuHeader>
+            <MatNavItem AllowSelection="false"><MatIcon Icon="explore"></MatIcon>&nbsp; Item 6</MatNavItem>
+        </MatNavSubMenuHeader>
+        <MatNavSubMenuList>
+            <MatNavItem Disabled="true" Href="#">Item 6.A</MatNavItem>
+            <MatNavItem>Item 6.B</MatNavItem>
+            <MatNavItem>Item 6.C</MatNavItem>
+
+        </MatNavSubMenuList>
+    </MatNavSubMenu>
+
+    <MatNavItem Href="/Checkbox">Internal Href Checkbox</MatNavItem>
+    <MatNavItem Href="/Checkbox" ForceLoad="true">ForceLoad - Internal Href Checkbox</MatNavItem>
+    <MatNavItem Href="https://blazorboilerplate.com/" Target="_blank">Blazor Boilerplate - Href - Target = _blank</MatNavItem>
+    <MatNavItem Href="https://www.matblazor.com/">MatBlazor - Href</MatNavItem>
+</MatNavMenu>
+
+@code
+{
+
+    [CascadingParameter]
+    public Guid Key { get; set; }
+    [Inject] IJSRuntime JS { get; set; }
+
+    bool navSubMenuOpenState;
+
+    async Task ClickMe()
+    {
+        Console.WriteLine("test");
+        await JS.InvokeAsync<object>("alert", "Successful OnClick!");
+    }
+    bool currentDrawerState;
+
+    private void ChangeTheme(string name)
+    {
+        currentDrawerState = Service.DrawerState;
+        Service.Theme.Name = name;
+        if(name == "dark")
+        {
+            Service.Theme.Theme = Service.DarkTheme;
+        }
+        else
+        {
+            Service.Theme.Theme = Service.LightTheme;
+        }
+
+        Key = Guid.NewGuid();
+        StateHasChanged();
+        Service.UpdateLayout();
+        //Service.DrawerState = currentDrawerState;
+    }
+}

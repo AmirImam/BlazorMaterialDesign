@@ -1,0 +1,37 @@
+﻿@page "/"
+@inject SharedService Service;
+<Grid>
+    <GridCell ColSpan="3">
+        <MatTextField Label="Background" Style="width:100%;" TValue="string" />
+    </GridCell>
+    <GridCell ColSpan="3">
+        <MatSelect TValue="string" Label="Pick Item">
+                <MatOptionString Value="a">A Item</MatOptionString>
+                <MatOptionString Value="b">B Item</MatOptionString>
+                <MatOptionString Value="c">C Item</MatOptionString>
+                <MatOptionString Value="d">D Item</MatOptionString>
+        </MatSelect>
+    </GridCell>
+    <GridCell ColSpan="12">
+        <MatTabGroup>
+            <MatTab Label="First">
+                First Content
+            </MatTab>
+            <MatTab Label="Second">
+                Second Content
+            </MatTab>
+            <MatTab>
+                <LabelContent>
+                    Third <MatIcon Icon="@MatIconNames.Close"></MatIcon>
+                </LabelContent>
+                <ChildContent>
+                    Third Content
+                </ChildContent>
+            </MatTab>
+
+        </MatTabGroup>
+    </GridCell>
+
+
+</Grid>
+

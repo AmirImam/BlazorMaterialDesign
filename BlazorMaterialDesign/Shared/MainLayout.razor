@@ -1,0 +1,45 @@
+﻿@inherits LayoutComponentBase
+@inject SharedService Service;
+@*<link href="@($"/css/{Service.Theme.Name}.css")" rel="stylesheet" />*@
+<CascadingValue Value="Key" Name="Key">
+    <MatThemeProvider Theme="Service.Theme.Theme">
+        <MatAppBarContainer>
+            <MatAppBar Fixed="false">
+                <MatAppBarRow>
+                    <MatAppBarSection>
+                        <MatIconButton Icon="menu" OnClick="@(() => { Service.DrawerState = !Service.DrawerState; })"></MatIconButton>
+                        <MatAppBarTitle>MatBlazor - Material Design components for Blazor</MatAppBarTitle>
+                    </MatAppBarSection>
+                    <MatAppBarSection Align="@MatAppBarSectionAlign.End">
+                        <MatIconButton Icon="favorite"></MatIconButton>
+                    </MatAppBarSection>
+                </MatAppBarRow>
+            </MatAppBar>
+            <MatAppBarContent>
+                <MatDrawerContainer Style="width: 100vw; height: 100vh;">
+                    <MatDrawer @bind-Opened="@Service.DrawerState">
+                        <NavMenu />
+                    </MatDrawer>
+                    <MatDrawerContent Style="@($"background-color:{@Service.Theme.Theme.Background};")">
+                        @Body
+                    </MatDrawerContent>
+                </MatDrawerContainer>
+
+            </MatAppBarContent>
+        </MatAppBarContainer>
+    </MatThemeProvider>
+</CascadingValue>
+
+
+@code{
+
+    Guid Key = Guid.NewGuid();
+    protected override void OnInitialized()
+    {
+        Service.UpdateLayout = StateHasChanged;
+        Service.Theme.Theme = Service.DarkTheme;
+        Service.Theme.Name = "dark";
+
+    }
+   
+}

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorMaterialDesign", "BlazorMaterialDesign\BlazorMaterialDesign.csproj", "{0C0A6185-F6A3-4C9B-8C66-CD9EADEBAA64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C0A6185-F6A3-4C9B-8C66-CD9EADEBAA64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C0A6185-F6A3-4C9B-8C66-CD9EADEBAA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C0A6185-F6A3-4C9B-8C66-CD9EADEBAA64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C0A6185-F6A3-4C9B-8C66-CD9EADEBAA64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {626487FD-0A11-43F5-A0C1-4948C798131A}
+	EndGlobalSection
+EndGlobal
